@@ -2,12 +2,14 @@
 #include <stdlib.h>
 #include <windows.h>
 #include <conio.h>
+#include <time.h>
 
 // <----------------------------------- FUNCTION DECLARATIONS ------------------------------------------>
 
 void animation();
 void countdown_animation();
 void display_game_message(char message[]);
+void initialize_game();
 
 
 
@@ -18,6 +20,7 @@ int main() {
     animation();
     printf("\n\n");
     display_game_message("Snake Game is Starting...");
+    initialize_game();
     return 0;
 }
 
@@ -71,3 +74,32 @@ void display_game_message(char message[]) {
 }
 
 
+// <----------------------------------- INITIALIZE GAME FUNCTION ------------------------------------------>
+void initialize_game() {
+    srand(time(NULL));
+
+
+    int snake_length = 3;
+    int snake_x[100] = {rand() % 20, rand() % 20, rand() % 20}; // Random X coordinates for the snake
+    int snake_y[100] = {rand() % 10, rand() % 10, rand() % 10}; // Random Y coordinates for the snake
+    
+
+    int direction = rand() % 4; // Random initial direction (0-3)
+    
+
+    int food_x = rand() % 20;  // Random X coordinate for food
+    int food_y = rand() % 10;  // Random Y coordinate for food 
+    
+
+    int score = 0;
+
+
+    printf("\nGame initialized with:\n");
+    printf("  Snake Length: %d\n", snake_length);
+    printf("  Snake Position: (%d, %d), (%d, %d), (%d, %d)\n", snake_x[0], snake_y[0], snake_x[1], snake_y[1], snake_x[2], snake_y[2]);
+    printf("  Snake Direction: %d\n", direction);
+    printf("  Food Position: (%d, %d)\n", food_x, food_y);
+    printf("  Initial Score: %d\n", score);
+
+    Sleep(2000); 
+}
